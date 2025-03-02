@@ -1,5 +1,8 @@
 # `num-calc.h` - A Lightweight Numerical Methods Single-Header Library in `C`
 
+[!NOTE]
+> You're in `testing` branch , change to `main` if you wish to see a polished project.
+
 This project aims to implements a collection of common numerical methods for solving math-related problems, prototyping algorithms or anything related to scientific computing. Optimized for speed and accuracy. 
 
 ## **Features** 
