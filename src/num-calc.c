@@ -88,6 +88,29 @@ void nc_matrix_clmem(nc_matrix* matrix) {
     if(matrix && matrix->elements)
         free(matrix->elements);
 }
+
+// Just a utilitary for printing matrices, maybe it will be removed in future
+void nc_print_matrix(nc_matrix *matrix) {
+    if(matrix) {
+        for(uint16 i = 1; i <= matrix->order * matrix->order; i++) {
+            if(i % (uint16)(matrix->order) == 0)
+                printf("%f \n", matrix->elements[i-1]);
+            else
+                printf("%f ", matrix->elements[i-1]);
+        }
+    }
+}
+
+double nc_matrix_get_element(nc_matrix *matrix, uint16 i, uint16 j) {
+    uint16 total_elements = matrix->order * matrix->order;
+
+    if(i * j > total_elements || i == 0 || j == 0)
+        return NAN;
+
+    // Array in C messes up the notation
+    return matrix->elements[(j - 1) + (matrix->order * (i - 1))];
+}
+
 /*
 ===== DIFFERENTIAL CALCULUS =====
 */
