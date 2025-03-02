@@ -1,5 +1,7 @@
 #include <stdbool.h>
 #include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "../lib/num-calc.h"
 
 /*
@@ -55,6 +57,37 @@ double nc_root_bisection(double f(double), nc_interval *r_interval, uint16 it) {
     return root;
 }
 
+/*
+===== LINEAR ALGEBRA =====
+*/
+
+nc_matrix nc_create_matrix(uint16 order) {
+    nc_matrix matrix;
+
+    // Using calloc to fill the dyn array with 0s. It could be replaced by malloc in
+    // future update
+    uint16 n_of_elements = order * order;
+    double *matrix_el = (double*)calloc(n_of_elements, sizeof(double));
+
+    if(!matrix_el) {
+      matrix.elements = NULL;
+      matrix.order = 0;
+    }
+
+    // NOTE: This is a dynamic array being pointed from outside this function, therefore
+    // it will need a separated function to free it when we're done
+    matrix.elements = matrix_el;
+    matrix.order = order;
+
+    return matrix;
+}
+
+// Every call of nc_create_matrix needs a call of nc_matrix_clmem (clear memory), or else it
+// will create a heap overflow through memory leak
+void nc_matrix_clmem(nc_matrix* matrix) {
+    if(matrix && matrix->elements)
+        free(matrix->elements);
+}
 /*
 ===== DIFFERENTIAL CALCULUS =====
 */
