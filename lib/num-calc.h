@@ -21,7 +21,9 @@ double nc_interval_size(nc_interval *interval);
 */
 double nc_root_bisection(double f(double), nc_interval *r_interval, uint16 it);
 
-// Numerical methods for finding root
-double nc_root_bisection(double f(double), nc_interval *r_interval, uint_16 it);
+/*
+===== DIFFERENTIAL CALCULUS =====
+*/
+double nc_dc_integral_simp(double f(double), nc_interval *integration_interval, uint16 it);
 
 #endif // NUM_CALC_H_

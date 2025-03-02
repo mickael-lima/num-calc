@@ -54,3 +54,22 @@ double nc_root_bisection(double f(double), nc_interval *r_interval, uint16 it) {
 
     return root;
 }
+
+/*
+===== DIFFERENTIAL CALCULUS =====
+*/
+double nc_dc_integral_simp(double f(double), nc_interval *integration_interval, uint16 it)  {
+
+    // It is simple to compute f(a) + f(b) first before using the Simpson's method
+    double integral_result = f(integration_interval->a) + f(integration_interval->b);
+    double ret_length = nc_interval_size(integration_interval) / it;
+
+    // Here, we increment integral_result using the Simpson's formula using the
+    // even/odd i for checking if we should multiply f(x_n) by 2 or 4.
+    for(uint16 i = 1; i < it; i++) {
+        double next_f_x_point = f(integration_interval->a + (i * ret_length));
+        integral_result += (i % 2 == 0 ? 2 : 4) * next_f_x_point;
+    }
+
+    return integral_result * ret_length / 3;
+}

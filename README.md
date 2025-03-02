@@ -29,7 +29,7 @@ Below, a list of implemented methods (checked) and planned methods (unchecked).
 - [ ] Inverse Matrix
 
 ### **Differential Calculus**
-- [ ] Simpson's method for Integral.
+- [X] Simpson's method for Integral.
 - [ ] Numerical derivative.
 
 ## **Getting Started**
