@@ -30,7 +30,7 @@ Below, a list of implemented methods (checked) and planned methods (unchecked).
 
 ### **Differential Calculus**
 - [X] Simpson's method for Integral.
-- [ ] Numerical derivative.
+- [X] Numerical derivative.
 
 ## **Getting Started**
 

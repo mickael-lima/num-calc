@@ -25,5 +25,6 @@ double nc_root_bisection(double f(double), nc_interval *r_interval, uint16 it);
 ===== DIFFERENTIAL CALCULUS =====
 */
 double nc_dc_integral_simp(double f(double), nc_interval *integration_interval, uint16 it);
+double nc_dc_derivative(double f(double), double x, double h);
 
 #endif // NUM_CALC_H_

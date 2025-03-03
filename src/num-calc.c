@@ -73,3 +73,8 @@ double nc_dc_integral_simp(double f(double), nc_interval *integration_interval, 
 
     return integral_result * ret_length / 3;
 }
+
+double nc_dc_derivative(double f(double), double x, double h) {
+    // Symmetric differential quotient method
+    return (f(x + h) - f(x - h)) / (2 * h);
+}
