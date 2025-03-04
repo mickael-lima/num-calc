@@ -34,7 +34,49 @@ Below, a list of implemented methods (checked) and planned methods (unchecked).
 
 ## **Getting Started**
 
-Examples and docs here! (under construction)
+Documentation is generated using `Doxygen`, it parses the `num-calc.h` file directly. Run 
+
+``` sh
+doxygen docs/
+```
+
+to generate a `index.html` page with the documentation of every function in the header. A quick showcase of the library: computing the root of `f(x) = cos(x)e^(x)` in`[0.0001, 3.9999]` using the bisection method with `10000` iteration.
+
+``` c
+// Import everything you might need
+#include <stdio.h>
+#include <math.h>
+
+// Import num-calc library in your project
+#include "lib/num-calc.h"
+
+// Define your math function
+double f(double x) {
+    return cos(x) * pow(M_E, x);
+}
+
+int main() {
+
+    // Create a math interval
+    nc_interval root_interval = {0.0001, 3.9999};
+
+    // Use the bisection method
+    double root = nc_root_bisection(f, &root_interval, 10000);
+
+    // Print the result
+    printf("%.20f\n", root);
+
+    return 0;
+}
+```
+
+It should return 
+
+``` sh
+1.57079632679489655800
+
+real	0m0,004s
+```
 
 ## License
 

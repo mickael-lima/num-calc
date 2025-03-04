@@ -11,7 +11,7 @@ double nc_interval_size(nc_interval *interval) {return interval->b - interval->a
 /*
 ===== ROOT-FINDING ALGORITHM =====
 */
-double nc_root_bisection(double f(double), nc_interval *r_interval, uint16 it) {
+double nc_root_bisection(double f(double), nc_interval *r_interval, uint16_t it) {
     double root = 0;
 
     double f_a = f(r_interval->a);
@@ -31,7 +31,7 @@ double nc_root_bisection(double f(double), nc_interval *r_interval, uint16 it) {
         root = NAN;
 
     else {
-        for(uint16 i = 0; i < it; i++) {
+        for(uint16_t i = 0; i < it; i++) {
             double midpoint = (r_interval->a + r_interval->b) / 2;
             double f_midpoint = f(midpoint);
 
@@ -58,7 +58,7 @@ double nc_root_bisection(double f(double), nc_interval *r_interval, uint16 it) {
 /*
 ===== DIFFERENTIAL CALCULUS =====
 */
-double nc_dc_integral_simp(double f(double), nc_interval *integration_interval, uint16 it)  {
+double nc_dc_integral_simp(double f(double), nc_interval *integration_interval, uint16_t it)  {
 
     // It is simple to compute f(a) + f(b) first before using the Simpson's method
     double integral_result = f(integration_interval->a) + f(integration_interval->b);
@@ -66,7 +66,7 @@ double nc_dc_integral_simp(double f(double), nc_interval *integration_interval, 
 
     // Here, we increment integral_result using the Simpson's formula using the
     // even/odd i for checking if we should multiply f(x_n) by 2 or 4.
-    for(uint16 i = 1; i < it; i++) {
+    for(uint16_t i = 1; i < it; i++) {
         double next_f_x_point = f(integration_interval->a + (i * ret_length));
         integral_result += (i % 2 == 0 ? 2 : 4) * next_f_x_point;
     }
